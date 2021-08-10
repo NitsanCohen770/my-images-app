@@ -12,6 +12,5 @@ export const StyledHeader = styled.header`
   top: 0;
   font-size: 1.5rem;
   font-weight: 800;
-  background: ${({ theme }) => theme.background};
   box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.0562443);
 `;

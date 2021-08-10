@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyledButton } from './styles';
 import * as FaIcon from 'react-icons/fa';
+import { StyledButtonProps } from '../../../shared/interfaces';
 
-export interface ButtonProps {
+export interface ButtonProps extends StyledButtonProps {
   icon: 'FaPlus' | 'FaMinus' | 'FaArrowLeft';
   onClick?: React.MouseEventHandler;
-  isBackButton?: boolean;
-  isImageChosen?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({

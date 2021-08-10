@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSearch } from '../hooks/useSearch';
 import { Button as BackButton, SearchBox, ImageList } from '../components';
@@ -18,7 +18,7 @@ const SearchPage: React.FC = () => {
   return (
     <>
       <BackButton
-        searchResults-cy='back-button'
+        data-cy='back-button'
         isBackButton
         onClick={(): void => history.push('/')}
         icon='FaArrowLeft'>

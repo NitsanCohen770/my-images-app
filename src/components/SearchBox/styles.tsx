@@ -12,7 +12,7 @@ export const SearchBoxWrapper = styled.div`
   .icon {
     padding: 0.625rem;
     cursor: pointer;
-    background: dodgerblue;
+    background: #087df3;
     color: white;
     min-width: 3.125rem;
     text-align: center;
@@ -25,7 +25,7 @@ export const SearchBoxWrapper = styled.div`
     padding: 0.625rem;
     outline: none;
     &:focus {
-      border: 0.125rem solid dodgerblue;
+      border: 0.125rem solid #087df3;
     }
   }
 `;

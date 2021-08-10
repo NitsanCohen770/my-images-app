@@ -19,11 +19,12 @@ export const ImageList: React.FC<ImageListProps> = ({
           tags={image.tags}
           previewURL={image.previewURL}
           ownersName={image.user || image.ownersName}
-          children='Add'
           isGoToSearchLink={image.isGoToSearchLink}
         />
       ))}
-      {isMyImagesList && <ImageViewer isGoToSearchLink />}
+      {isMyImagesList && (
+        <ImageViewer ownersName='Search a new image' isGoToSearchLink />
+      )}
     </ImageListWrapper>
   );
 };

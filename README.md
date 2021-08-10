@@ -21,14 +21,11 @@ You will also see any lint errors in the console.
 ### `yarn run cy:open`
 
 Launches the Cypress test runner in the interactive watch mode.\
+
+Click on the searchImages.spec.js file to run the tests.
+
 See the section about [running tests](https://docs.cypress.io/guides/getting-started/installing-cypress) for more information and troubleshooting running Cypress loc.
 
 ### `yarn storybook`
 
 Here You'll be able to watch the components I built in isolation with all their stories.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.

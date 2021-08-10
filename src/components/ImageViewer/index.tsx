@@ -5,13 +5,13 @@ import { Button } from '../UI/Button';
 import { ImageWrapper } from './styles';
 import AddImage from '../../assets/images/add.png';
 import { useHistory, useLocation } from 'react-router';
+import { ImageWrapperProps } from '../../shared/interfaces';
 
-interface ImageViewerProps {
+interface ImageViewerProps extends ImageWrapperProps {
   previewURL?: string | null;
   tags?: string;
   ownersName?: string;
   id?: string;
-  isGoToSearchLink?: boolean;
 }
 
 export const ImageViewer: React.FC<ImageViewerProps> = ({

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import { ImageWrapperProps } from '../../shared/interfaces';
 
-export const ImageWrapper = styled.div<{
-  isImageChosen: boolean;
-  isGoToSearchLink: boolean;
-}>`
+export const ImageWrapper = styled.div<ImageWrapperProps>`
   position: relative;
   width: 50%;
   display: flex;
