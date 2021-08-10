@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import axios from '../axios-orders/axios';
+import { useSearch } from '../hooks/useSearch';
 import { Button as BackButton, SearchBox, ImageList } from '../components';
+import Pagination from '@material-ui/lab/Pagination';
+import Grid from '@material-ui/core/Grid';
 
 const SearchPage: React.FC = () => {
   const history = useHistory();
-  const [searchResults, setSearchResults] = useState<{}[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
-
-  useEffect((): void => {
-    if (searchValue === '') {
-      return;
-    }
-    axios('', { params: { q: searchValue } }).then(res =>
-      setSearchResults(res.data.hits)
-    );
-  }, [setSearchResults, searchValue]);
-
+  const {
+    loading,
+    setSearchResults,
+    searchResults,
+    pagesNumber,
+    pagesRef,
+  } = useSearch(searchValue);
   return (
     <>
       <BackButton
-        data-cy='back-button'
+        searchResults-cy='back-button'
         isBackButton
         onClick={(): void => history.push('/')}
         icon='FaArrowLeft'>
@@ -28,6 +26,15 @@ const SearchPage: React.FC = () => {
       </BackButton>
       <SearchBox setSearchValue={setSearchValue} />
       <ImageList images={searchResults} />
+      <Grid style={{ marginTop: '20px' }} container justify='center'>
+        <Pagination
+          count={pagesNumber}
+          onChange={(event: object, page: number) =>
+            setSearchResults(pagesRef.current[page])
+          }
+          siblingCount={0}
+        />
+      </Grid>
     </>
   );
 };

@@ -36,14 +36,19 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
 
   const clickedImageHandler = (): void => {
     if (!isHomePage) {
-      setMyImagesListState(prevList => [
-        ...prevList,
-        { previewURL, tags, ownersName, id },
-      ]);
+      setMyImagesListState(prevList => {
+        const updatedImageList = [
+          ...prevList,
+          { previewURL, tags, ownersName, id },
+        ];
+        localStorage.setItem('myImagesList', JSON.stringify(updatedImageList));
+        return updatedImageList;
+      });
       setIsImageChosen(true);
     } else {
       setMyImagesListState(prevList => {
         const updatedImageList = prevList.filter(image => image.id !== id);
+        localStorage.setItem('myImagesList', JSON.stringify(updatedImageList));
         return updatedImageList;
       });
     }

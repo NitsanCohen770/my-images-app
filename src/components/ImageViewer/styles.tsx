@@ -25,7 +25,6 @@ export const ImageWrapper = styled.div<{
 
   > img {
     opacity: ${({ isImageChosen }) => (isImageChosen ? '0.1' : '1')};
-
     display: block;
     width: 100%;
     height: auto;
@@ -35,6 +34,7 @@ export const ImageWrapper = styled.div<{
   > div,
   span {
     transition: 0.5s ease;
+
     opacity: ${({ isImageChosen }) => (isImageChosen ? '1' : '0')};
     position: absolute;
     top: 50%;
@@ -43,6 +43,9 @@ export const ImageWrapper = styled.div<{
     -ms-transform: translate(-50%, -50%);
   }
   > span {
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
     top: 10%;
     left: 50%;
   }
