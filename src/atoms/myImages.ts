@@ -12,8 +12,3 @@ export const myImageState = atom({
   key: 'myImages',
   default: [] as myImage[],
 });
-
-export const searchValueState = atom<string>({
-  key: 'searchValue',
-  default: '',
-});

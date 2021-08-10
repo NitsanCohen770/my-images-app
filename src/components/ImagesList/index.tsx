@@ -6,7 +6,10 @@ interface ImageListProps {
   isMyImagesList?: boolean;
 }
 
-const ImageList: React.FC<ImageListProps> = ({ images, isMyImagesList }) => {
+export const ImageList: React.FC<ImageListProps> = ({
+  images,
+  isMyImagesList,
+}) => {
   return (
     <ImageListWrapper>
       {images.map((image: { [any: string]: any }) => (
@@ -24,5 +27,3 @@ const ImageList: React.FC<ImageListProps> = ({ images, isMyImagesList }) => {
     </ImageListWrapper>
   );
 };
-
-export default ImageList;

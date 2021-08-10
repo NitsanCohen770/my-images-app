@@ -6,6 +6,7 @@ export interface ButtonProps {
   icon: 'FaPlus' | 'FaMinus' | 'FaArrowLeft';
   onClick?: React.MouseEventHandler;
   isBackButton?: boolean;
+  isImageChosen?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -13,12 +14,20 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   onClick,
   isBackButton,
+  isImageChosen,
   ...props
 }) => {
-  const Icon = FaIcon[icon];
+  let Icon = FaIcon[icon];
+  if (isImageChosen) {
+    Icon = FaIcon.FaCheck;
+  }
 
   return (
-    <StyledButton onClick={onClick} isBackButton={isBackButton} {...props}>
+    <StyledButton
+      onClick={onClick}
+      isBackButton={isBackButton}
+      isImageChosen={isImageChosen}
+      {...props}>
       <Icon />
       {children}
     </StyledButton>

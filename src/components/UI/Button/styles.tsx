@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.div<{ isBackButton?: boolean }>`
+export const StyledButton = styled.div<{
+  isBackButton?: boolean;
+  isImageChosen: boolean;
+}>`
   height: 1.75rem;
   width: 6rem;
   display: flex;
+  background: rebeccapurple;
   justify-content: center;
   align-items: center;
   margin-left: ${({ isBackButton }) => isBackButton && '4.6vw'};
@@ -15,4 +19,5 @@ export const StyledButton = styled.div<{ isBackButton?: boolean }>`
   border-radius: 0.125rem;
   font-weight: 300;
   font-size: 1rem;
+  pointer-events: ${({ isImageChosen }) => (isImageChosen ? 'none' : 'auto')};
 `;

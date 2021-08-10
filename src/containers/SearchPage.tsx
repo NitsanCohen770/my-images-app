@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import axios from '../axios-orders/axios';
-import { Button as BackButton, SearchBox } from '../components';
-import ImageList from '../components/ImagesList';
-interface SearchPageProps {}
+import { Button as BackButton, SearchBox, ImageList } from '../components';
 
-const SearchPage: React.FC<SearchPageProps> = () => {
+const SearchPage: React.FC = () => {
   const history = useHistory();
   const [searchResults, setSearchResults] = useState<{}[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
 
-  useEffect(() => {
+  useEffect((): void => {
     if (searchValue === '') {
       return;
     }
@@ -24,7 +22,7 @@ const SearchPage: React.FC<SearchPageProps> = () => {
       <BackButton
         data-cy='back-button'
         isBackButton
-        onClick={() => history.push('/')}
+        onClick={(): void => history.push('/')}
         icon='FaArrowLeft'>
         Back
       </BackButton>

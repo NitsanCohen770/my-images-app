@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { myImageState } from '../../atoms/myImages';
 import { Button } from '../UI/Button';
 import { ImageWrapper } from './styles';
-import AddImage from './add.png';
+import AddImage from '../../assets/images/add.png';
 import { useHistory, useLocation } from 'react-router';
 
 interface ImageViewerProps {
@@ -21,7 +21,7 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
   ownersName,
   isGoToSearchLink,
 }) => {
-  const [images, setMyImagesListState] = useRecoilState(myImageState);
+  const setMyImagesListState = useSetRecoilState(myImageState);
   const [isImageChosen, setIsImageChosen] = useState<boolean>(false);
   const history = useHistory();
   const path: string = useLocation().pathname;
@@ -60,9 +60,12 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
       />
       {!isGoToSearchLink && (
         <Button
+          isImageChosen={isImageChosen}
           onClick={clickedImageHandler}
           icon={isHomePage ? 'FaMinus' : 'FaPlus'}>
-          {isHomePage ? 'Remove' : 'Add'}
+          {isHomePage && 'Remove'}
+          {!isHomePage && !isImageChosen && 'Add'}
+          {isImageChosen && 'Added'}
         </Button>
       )}
       {isHomePage && <span>{ownersName}</span>}

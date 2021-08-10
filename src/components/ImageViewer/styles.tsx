@@ -12,7 +12,6 @@ export const ImageWrapper = styled.div<{
   justify-self: center;
   border: 0.125rem
     ${({ isGoToSearchLink }) => (isGoToSearchLink ? 'dashed' : 'solid')} black;
-  opacity: ${({ isImageChosen }) => isImageChosen && '0.1'};
   border-radius: 0.125rem;
   &:hover img {
     opacity: 0.3;
@@ -25,7 +24,8 @@ export const ImageWrapper = styled.div<{
   }
 
   > img {
-    opacity: 1;
+    opacity: ${({ isImageChosen }) => (isImageChosen ? '0.1' : '1')};
+
     display: block;
     width: 100%;
     height: auto;
@@ -35,7 +35,7 @@ export const ImageWrapper = styled.div<{
   > div,
   span {
     transition: 0.5s ease;
-    opacity: 0;
+    opacity: ${({ isImageChosen }) => (isImageChosen ? '1' : '0')};
     position: absolute;
     top: 50%;
     left: 50%;
