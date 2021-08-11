@@ -4,10 +4,20 @@ import { FaSearch } from 'react-icons/fa';
 
 interface SearchBoxProps {
   setSearchValue?: React.Dispatch<React.SetStateAction<string>>;
+  pagesRef?: React.MutableRefObject<{}>;
 }
 
-export const SearchBox: React.FC<SearchBoxProps> = ({ setSearchValue }) => {
+export const SearchBox: React.FC<SearchBoxProps> = ({
+  setSearchValue,
+  pagesRef,
+}) => {
   const input = useRef<HTMLInputElement>();
+
+  const newSearchValueHandler = () => {
+    setSearchValue(input.current.value);
+    pagesRef.current = {};
+  };
+
   return (
     <SearchBoxWrapper>
       <input
@@ -18,7 +28,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ setSearchValue }) => {
       />
       <FaSearch
         data-cy='search-button'
-        onClick={() => setSearchValue(input.current.value)}
+        onClick={newSearchValueHandler}
         className='icon'
       />
     </SearchBoxWrapper>

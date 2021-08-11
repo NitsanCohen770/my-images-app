@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from '../axios-orders/axios';
 
-export const useSearch = query => {
+export const useSearch = (query: string, pageNumber?: number) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [pagesNumber, setPagesNumber] = useState<number>(0);
+  const [pagesNumber, setPagesNumber] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchResults, setSearchResults] = useState<{}[]>([]);
   const pagesRef = useRef<{}>({});
 
@@ -11,38 +12,33 @@ export const useSearch = query => {
     if (!query || query.trim() === '') return;
 
     const fetchData = async () => {
-      pagesRef.current = {};
       setLoading(true);
-      const response = await axios('', { params: { q: query, page: 1 } });
+      const response = await axios('', {
+        params: { q: query, page: currentPage },
+      });
+      const {
+        data: { totalHits: totalSearchResults },
+      } = response;
+
       const {
         data: { hits: searchResults },
       } = response;
+      pagesRef.current[currentPage] = searchResults;
+      const totalPages = Math.round(totalSearchResults / 30);
       setSearchResults(searchResults);
+      setPagesNumber(totalPages);
       setLoading(false);
-    };
-    const fetchPages = async () => {
-      let isMorePages: boolean = true;
-      for (let i: number = 1; isMorePages; i++) {
-        const response = await axios('', {
-          params: { q: query, page: i },
-        });
-        const {
-          data: { hits: searchResults },
-        } = response;
-
-        if (searchResults.length === 0) {
-          isMorePages = false;
-        } else {
-          pagesRef.current[i] = searchResults;
-        }
-        setPagesNumber(Object.keys(pagesRef.current).length);
-      }
     };
 
     fetchData();
-    fetchPages();
-    console.log(pagesRef);
-  }, [query]);
+  }, [query, currentPage, pageNumber]);
 
-  return { loading, setSearchResults, searchResults, pagesNumber, pagesRef };
+  return {
+    loading,
+    setCurrentPage,
+    setSearchResults,
+    searchResults,
+    pagesNumber,
+    pagesRef,
+  };
 };

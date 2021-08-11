@@ -1,3 +1,4 @@
+ 
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
@@ -19,7 +20,7 @@ describe('This is an E2E test to check the flow of the app.', () => {
 
   it('Click on the first 2 images and add them to my images.', () => {
     cy.react('ImageViewer').first().click('center');
-    cy.react('ImageViewer').eq(1).click('center');
+        cy.react('ImageViewer').eq(1).click('center');
   });
 
   it('Should navigate back to the homepage and check if the added images are there.', () => {

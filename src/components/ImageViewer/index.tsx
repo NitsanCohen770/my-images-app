@@ -54,6 +54,16 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
     }
   };
 
+  const buttonLabelHandler = () => {
+    if (isHomePage) {
+      return 'Remove';
+    }
+    if (isImageChosen) {
+      return 'Added';
+    }
+    return 'Add';
+  };
+
   return (
     <ImageWrapper
       isImageChosen={isImageChosen}
@@ -68,9 +78,7 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
           isImageChosen={isImageChosen}
           onClick={clickedImageHandler}
           icon={isHomePage ? 'FaMinus' : 'FaPlus'}>
-          {isHomePage && 'Remove'}
-          {!isHomePage && !isImageChosen && 'Add'}
-          {isImageChosen && 'Added'}
+          {buttonLabelHandler()}
         </Button>
       )}
       {isHomePage && <span>{ownersName}</span>}
