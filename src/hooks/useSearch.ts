@@ -13,21 +13,25 @@ export const useSearch = (query: string, pageNumber?: number) => {
 
     const fetchData = async () => {
       setLoading(true);
-      const response = await axios('', {
-        params: { q: query, page: currentPage },
-      });
-      const {
-        data: { totalHits: totalSearchResults },
-      } = response;
+      try {
+        const response = await axios('', {
+          params: { q: query, page: pageNumber },
+        });
+        const {
+          data: { totalHits: totalSearchResults },
+        } = response;
 
-      const {
-        data: { hits: searchResults },
-      } = response;
-      pagesRef.current[currentPage] = searchResults;
-      const totalPages = Math.round(totalSearchResults / 30);
-      setSearchResults(searchResults);
-      setPagesNumber(totalPages);
-      setLoading(false);
+        const {
+          data: { hits: searchResults },
+        } = response;
+        pagesRef.current[currentPage] = searchResults;
+        const totalPages = Math.round(totalSearchResults / 30);
+        setSearchResults(searchResults);
+        setPagesNumber(totalPages);
+        setLoading(false);
+      } catch (error) {
+        setSearchResults(error);
+      }
     };
 
     fetchData();
