@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSearch } from '../hooks/useSearch';
+import { useScrollDirection } from '../hooks/useScrollDirection';
 import { Button as BackButton, SearchBox, ImageList } from '../components';
 import Pagination from '@material-ui/lab/Pagination';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +10,7 @@ import Loader from 'react-loader-spinner';
 const SearchPage: React.FC = () => {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState<string>('');
+  const { isScrollingDown, isScrollingUp } = useScrollDirection();
   const {
     loading,
     setCurrentPage,
@@ -37,7 +39,8 @@ const SearchPage: React.FC = () => {
         />
       </Grid>
     );
-
+  console.log(isScrollingDown);
+  console.log(isScrollingUp);
   return (
     <>
       <BackButton
