@@ -2,7 +2,7 @@ import { render, within } from '@testing-library/react';
 
 import { composeStories } from '@storybook/testing-react';
 
-import * as ButtonStories from '../stories/Button.stories'; //👈  Our stories imported here
+import * as ButtonStories from '../stories/Button.stories'; 
 
 const { AddImage } = composeStories(ButtonStories);
 const { RemoveImage } = composeStories(ButtonStories);
@@ -21,6 +21,12 @@ it('renders a button with "Remove" label', () => {
 });
 
 it('renders a button with "Back" label', () => {
+  const { container } = render(<BackButton />);
+  const { getByText } = within(container);
+  expect(getByText('Back')).toBeInTheDocument();
+});
+
+it('Goes back when clicked', () => {
   const { container } = render(<BackButton />);
   const { getByText } = within(container);
   expect(getByText('Back')).toBeInTheDocument();

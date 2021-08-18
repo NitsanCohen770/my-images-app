@@ -37,8 +37,8 @@ constructor(props) {
   }
 
   handleChange(event, element) {
-    this.setState(prevState => ...prevState,[element]:event.target.value);
-  }
+    this.setState(prevState => {...prevState,[element]:event.target.value});
+  
 
   handleSubmit(event) {
     event.preventDefault();

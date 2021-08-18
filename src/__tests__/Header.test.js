@@ -6,7 +6,7 @@ import * as HeaderStories from '../stories/Header.stories';
 
 const { HomePage } = composeStories(HeaderStories);
 
-it('renders a button with "Add" label', () => {
+it('renders a Header with "Your Favorite Images" label', () => {
   const { container } = render(<HomePage />);
   const { getByText } = within(container);
   expect(getByText('Your Favorite Images')).toBeInTheDocument();
